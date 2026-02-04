@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Her ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.lock {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+input {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 220px;
+    text-align: center;
+}
+
+.card {
+    display: none;
+    background: white;
+    width: 90%;
+    max-width: 380px;
+    padding: 35px 25px;
+    border-radius: 22px;
+    text-align: center;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+    animation: pop 0.8s ease;
+    z-index: 2;
+}
+
+@keyframes pop {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+h1 { color: #ff2e93; }
+.sub { color: #ff6fae; font-size: 18px; margin-bottom: 15px; }
+p { font-size: 18px; color: #444; }
+
+button {
+    padding: 14px 32px;
+    margin: 12px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#yesBtn { background: #ff4da6; color: white; }
+#noBtn { background: #ddd; position: relative; }
+
+.from {
+    margin-top: 22px;
+    font-size: 16px;
+    color: #ff3f9e;
+    font-style: italic;
+}
+
+/* Floating */
+.heart, .teddy {
+    position: absolute;
+    bottom: -30px;
+    animation: floatUp linear infinite;
+}
+.heart { font-size: 20px; animation-duration: 6s; }
+.teddy { font-size: 30px; animation-duration: 7s; }
+
+@keyframes floatUp {
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(-110vh); opacity: 0; }
+}
+
+/* Popup */
+.popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.popup-box {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    width: 85%;
+    max-width: 330px;
+    text-align: center;
+    animation: pop 0.6s ease;
+}
+
+.popup-box h2 { color: #ff2e93; }
+
+/* Fireworks */
+.firework {
+    position: fixed;
+    font-size: 22px;
+    animation: explode 1.2s ease-out forwards;
+}
+
+@keyframes explode {
+    from { transform: scale(0); opacity: 1; }
+    to { transform: scale(2.5); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<div class="lock" id="lock">
+    <h2>🔐 Private Access</h2>
+    <p>Enter the password</p>
+    <input id="password" placeholder="DD-MM-YYYY">
+    <br><br>
+    <button onclick="unlock()">Unlock ❤️</button>
+</div>
+
+<div class="card" id="card" onclick="playMusic()">
+    <h1>💖 Hey Divya 💖</h1>
+    <div class="sub">This little surprise is made just for you ✨</div>
+    <p>Will you be my Valentine?</p>
+
+    <button id="yesBtn">Yes 💘</button>
+    <button id="noBtn">No 💔</button>
+
+    <div class="from">— with a lot of feelings, Shubham 💌</div>
+</div>
+
+<div class="popup" id="popup">
+    <div class="popup-box" id="popupBox"></div>
+</div>
+
+<script>
+document.addEventListener("contextmenu", e => e.preventDefault());
+
+function unlock() {
+    if (document.getElementById("password").value.trim() === "13-05-2004") {
+        lock.style.display = "none";
+        card.style.display = "block";
+    } else {
+        alert("Wrong password ❤️");
+    }
+}
+
+function playMusic() {
+    document.getElementById("bgMusic").play();
+}
+
+noBtn.onclick = () => {
+    noBtn.style.transform =
+        `translate(${Math.random()*200-100}px,${Math.random()*120-60}px)`;
+};
+
+yesBtn.onclick = () => {
+    popupBox.innerHTML = `
+        <h2>🧸 Ja Gharla Arshyat tond Bghja  🧸</h2>
+        <button onclick="hatePopup()">😠 I Hate You</button>
+        <button onclick="lovePopup()" style="background:#ff4da6;color:white;">😘 I Love You</button>
+    `;
+    popup.style.display = "flex";
+};
+
+function hatePopup() {
+    popupBox.innerHTML = `
+        <h2>😤😠😒</h2>
+        <p><strong>Ka g!!!</strong><br><br>
+        Naraj aahe mi atta 😒<br>
+        Pan thodach… khup jast nahi 😤💔</p>
+        <button onclick="closePopup()">🙈 Sorry</button>
+    `;
+}
+
+function lovePopup() {
+    popupBox.innerHTML = `
+        <h2>😘💋</h2>
+        <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" width="120"><br>
+        <p>You just made my heart smile 💖<br>
+        Sending you the warmest hug 😘</p>
+        <button onclick="closePopup()">💞 Aww</button>
+    `;
+    fireworks();
+}
+
+function closePopup() {
+    popup.style.display = "none";
+}
+
+function fireworks() {
+    for (let i = 0; i < 25; i++) {
+        const f = document.createElement("div");
+        f.className = "firework";
+        f.innerText = "✨";
+        f.style.left = Math.random()*100 + "vw";
+        f.style.top = Math.random()*100 + "vh";
+        document.body.appendChild(f);
+        setTimeout(() => f.remove(), 1200);
+    }
+}
+
+setInterval(() => {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = "❤️";
+    h.style.left = Math.random()*100 + "vw";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+},300);
+
+setInterval(() => {
+    const t = document.createElement("div");
+    t.className = "teddy";
+    t.innerHTML = "🧸";
+    t.style.left = Math.random()*100 + "vw";
+    document.body.appendChild(t);
+    setTimeout(()=>t.remove(),7000);
+},700);
+</script>
+
+</body>
+</html>
